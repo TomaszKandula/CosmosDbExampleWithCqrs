@@ -20,7 +20,7 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllArticles
 
         public async Task<IEnumerable<Articles>> Handle(GetAllArticlesQuery ARequest, CancellationToken ACancellationToken)
         {
-            return await FCosmosDbService.GetItems<Articles>($"select * from {typeof(Articles).Name}");
+            return await FCosmosDbService.GetItems<Articles>($"select * from {typeof(Articles).Name}", ACancellationToken);
         }
     }
 

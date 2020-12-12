@@ -30,7 +30,7 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
                 Status = ARequest.Status,
                 Likes = ARequest.Likes,
                 ReadCount = ARequest.ReadCount
-            });
+            }, ACancellationToken);
 
             return await Task.FromResult(Unit.Value);
         }
