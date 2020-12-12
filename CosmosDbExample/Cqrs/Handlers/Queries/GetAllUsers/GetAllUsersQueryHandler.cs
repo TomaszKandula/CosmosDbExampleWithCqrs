@@ -19,7 +19,6 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllUsers
 
         public async Task<IEnumerable<Users>> Handle(GetAllUsersQuery ARequest, CancellationToken ACancellationToken) 
         {
-            FCosmosDbService.InitContainer<Users>();
             return await FCosmosDbService.GetItems<Users>($"select * from {typeof(Users).Name}");
         }
 

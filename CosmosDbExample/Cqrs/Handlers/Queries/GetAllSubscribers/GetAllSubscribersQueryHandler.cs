@@ -20,7 +20,6 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllSubscribers
 
         public async Task<IEnumerable<Subscribers>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
         {
-            FCosmosDbService.InitContainer<Subscribers>();
             return await FCosmosDbService.GetItems<Subscribers>($"select * from {typeof(Subscribers).Name}");
         } 
 

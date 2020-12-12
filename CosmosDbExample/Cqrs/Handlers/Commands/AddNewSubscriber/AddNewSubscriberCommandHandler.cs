@@ -22,7 +22,6 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewSubscriber
         {
 
             var NewGuid = Guid.NewGuid();
-            FCosmosDbService.InitContainer<Subscribers>();
             await FCosmosDbService.AddItem(NewGuid, new Subscribers
             {
                 Id = NewGuid,

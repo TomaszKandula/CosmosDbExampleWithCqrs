@@ -19,7 +19,6 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleArticle
 
         public async Task<Articles> Handle(GetSingleArticleQuery ARequest, CancellationToken ACancellationToken)
         {
-            FCosmosDbService.InitContainer<Articles>();
             return await FCosmosDbService.GetItem<Articles>(ARequest.Id);
         }
     }
