@@ -8,7 +8,6 @@ namespace CosmosDbExample.Database
 
     public interface ICosmosDbService
     {
-        void InitContainer<T>();
         Task<HttpStatusCode> CreateDatabase(string ADatabaseName);
         Task<HttpStatusCode> CreateContainer(string ADatabaseName, string AContainerName, Guid AId);
         Task<HttpStatusCode> IsItemExists<T>(Guid Id) where T : class;

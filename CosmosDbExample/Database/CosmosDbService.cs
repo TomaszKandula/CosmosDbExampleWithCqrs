@@ -36,7 +36,7 @@ namespace CosmosDbExample.Database
 
         }
 
-        public override void InitContainer<T>() 
+        private void InitContainer<T>() 
         {
             // Names of CosmosDb container and item model used in the container must be the same
             var LModelName = typeof(T).Name;
@@ -95,6 +95,7 @@ namespace CosmosDbExample.Database
 
             try
             {
+                if (FContainer == null) InitContainer<T>();
                 var LResponse = await FContainer.ReadItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()));
                 return LResponse.Resource;
             }
@@ -111,6 +112,7 @@ namespace CosmosDbExample.Database
             try 
             {
 
+                if (FContainer == null) InitContainer<T>();
                 var LQuery = FContainer.GetItemQueryIterator<T>(new QueryDefinition(AQueryString));
                 var LResults = new List<T>();
 
@@ -135,6 +137,7 @@ namespace CosmosDbExample.Database
 
             try 
             {
+                if (FContainer == null) InitContainer<T>();
                 var Response = await FContainer.CreateItemAsync<T>(AItem, new PartitionKey(AId.ToString()));
                 return Response.StatusCode;
             }
@@ -150,6 +153,7 @@ namespace CosmosDbExample.Database
 
             try
             {
+                if (FContainer == null) InitContainer<T>();
                 var Response = await FContainer.UpsertItemAsync<T>(AItem, new PartitionKey(AId.ToString()));
                 return Response.StatusCode;
             }
@@ -165,6 +169,7 @@ namespace CosmosDbExample.Database
 
             try
             {
+                if (FContainer == null) InitContainer<T>();
                 var Response = await FContainer.DeleteItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()));
                 return Response.StatusCode;
             }
