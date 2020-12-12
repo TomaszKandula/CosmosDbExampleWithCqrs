@@ -26,7 +26,7 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewSubscriber
             {
                 Id = NewGuid,
                 Email = ARequest.Email
-            });
+            }, ACancellationToken);
 
             return await Task.FromResult(Unit.Value);
 

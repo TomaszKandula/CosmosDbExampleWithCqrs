@@ -19,7 +19,7 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleUser
 
         public async Task<Users> Handle(GetSingleUserQuery ARequest, CancellationToken ACancellationToken)
         {
-            return await FCosmosDbService.GetItem<Users>(ARequest.Id);
+            return await FCosmosDbService.GetItem<Users>(ARequest.Id, ACancellationToken);
         }
 
     }
