@@ -53,7 +53,26 @@ public interface ICosmosDbService
 }
 ```
 
-All methods are asynchronous. The usage is very straightforward, after the call, check returned `HttpStatusCode`.
+All methods are asynchronous. The usage is very straightforward:
+
+```csharp
+public async Task<Unit> Handle(AddNewArticleCommand ARequest, CancellationToken ACancellationToken)
+{
+    var NewGuid = Guid.NewGuid();
+    await FCosmosDbService.AddItem(NewGuid, new Articles
+    {
+        Id = ARequest.Id,
+        Title = ARequest.Title,
+        Desc = ARequest.Desc,
+        Status = ARequest.Status,
+        Likes = ARequest.Likes,
+        ReadCount = ARequest.ReadCount
+    }, ACancellationToken);
+    return await Task.FromResult(Unit.Value);
+}
+```
+
+After the call, ones should check returned `HttpStatusCode` (not provided in the examples).
 
 ## How to run example
 
