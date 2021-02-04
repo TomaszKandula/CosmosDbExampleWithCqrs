@@ -11,10 +11,8 @@ using MediatR;
 
 namespace CosmosDbExample.Controllers
 {
-
     public class UsersController : BaseController
     {
-
         public UsersController(IMediator AMediator) : base(AMediator)
         {        
         }
@@ -39,7 +37,5 @@ namespace CosmosDbExample.Controllers
             var LQuery = new GetSingleUserQuery { Id = Id };
             return await FMediator.Send(LQuery);
         }
-
     }
-
 }

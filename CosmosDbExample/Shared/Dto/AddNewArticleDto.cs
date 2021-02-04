@@ -2,7 +2,6 @@
 
 namespace CosmosDbExample.Shared.Dto
 {
-
     public class AddNewArticleDto
     {
         public Guid Id { get; set; }
@@ -12,5 +11,4 @@ namespace CosmosDbExample.Shared.Dto
         public int Likes { get; set; }
         public int ReadCount { get; set; }
     }
-
 }

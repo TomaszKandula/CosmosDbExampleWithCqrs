@@ -2,7 +2,6 @@
 
 namespace CosmosDbExample.Domain.Entities
 {
-
     public class Subscribers
     {
         public Guid Id { get; set; }
@@ -12,5 +11,4 @@ namespace CosmosDbExample.Domain.Entities
         public DateTime Registered { get; set; }
         public DateTime? LastUpdated { get; set; }
     }
-
 }

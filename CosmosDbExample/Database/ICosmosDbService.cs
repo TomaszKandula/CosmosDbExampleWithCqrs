@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace CosmosDbExample.Database
 {
-
     public interface ICosmosDbService
     {
         Task<HttpStatusCode> CreateDatabase(string ADatabaseName, CancellationToken ACancellationToken = default);
@@ -18,5 +17,4 @@ namespace CosmosDbExample.Database
         Task<HttpStatusCode> UpdateItem<T>(Guid AId, T AItem, CancellationToken ACancellationToken = default);
         Task<HttpStatusCode> DeleteItem<T>(Guid AId, CancellationToken ACancellationToken = default);
     }
-
 }

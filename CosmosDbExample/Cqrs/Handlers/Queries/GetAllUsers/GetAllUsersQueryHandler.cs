@@ -9,7 +9,6 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllUsers
 {
     public class GetAllUsersQueryHandler : IRequestHandler<GetAllUsersQuery, IEnumerable<Users>>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetAllUsersQueryHandler(ICosmosDbService ACosmosDbService) 
@@ -21,7 +20,5 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllUsers
         {
             return await FCosmosDbService.GetItems<Users>($"select * from {typeof(Users).Name}", ACancellationToken);
         }
-
     }
-
 }

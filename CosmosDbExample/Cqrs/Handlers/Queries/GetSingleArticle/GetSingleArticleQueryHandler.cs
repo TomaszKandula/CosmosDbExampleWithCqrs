@@ -6,10 +6,8 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleArticle
 {
-
     public class GetSingleArticleQueryHandler : IRequestHandler<GetSingleArticleQuery, Articles>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetSingleArticleQueryHandler(ICosmosDbService ACosmosDbService) 
@@ -22,5 +20,4 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleArticle
             return await FCosmosDbService.GetItem<Articles>(ARequest.Id, ACancellationToken);
         }
     }
-
 }

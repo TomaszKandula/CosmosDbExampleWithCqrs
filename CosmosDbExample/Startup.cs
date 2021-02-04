@@ -26,7 +26,6 @@ namespace CosmosDbExample
 {
     public class Startup
     {
-
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
@@ -36,7 +35,6 @@ namespace CosmosDbExample
 
         public void ConfigureServices(IServiceCollection AServices)
         {
-
             AServices.AddMvc(AOption => AOption.CacheProfiles
             .Add("Standard", new CacheProfile()
             {
@@ -72,13 +70,10 @@ namespace CosmosDbExample
             {
                 AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "Cosmos DB Example", Version = "v1" });
             });
-
-
         }
 
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
         {
-
             if (AEnvironment.IsDevelopment())
             {
                 AApplication.UseDeveloperExceptionPage();
@@ -98,8 +93,6 @@ namespace CosmosDbExample
             {
                 AEndpoints.MapControllers();
             });
-
         }
-
     }
 }

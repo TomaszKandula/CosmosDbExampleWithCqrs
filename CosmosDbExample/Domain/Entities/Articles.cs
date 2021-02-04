@@ -1,8 +1,7 @@
 ﻿using System;
 
 namespace CosmosDbExample.Domain.Entities
-{
-    
+{  
     public class Articles
     {
         public Guid Id { get; set; }
@@ -12,5 +11,4 @@ namespace CosmosDbExample.Domain.Entities
         public int Likes { get; set; }
         public int ReadCount { get; set; }
     }
-
 }
