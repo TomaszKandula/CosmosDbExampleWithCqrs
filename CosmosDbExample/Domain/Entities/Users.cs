@@ -2,9 +2,8 @@
 
 namespace CosmosDbExample.Domain.Entities
 {
-    public class Users
+    public class Users : __EntityKey
     {
-        public string Id { get; set; }
         public string UserAlias { get; set; }
         public string UserStatus { get; set; }
         public string FirstName { get; set; }

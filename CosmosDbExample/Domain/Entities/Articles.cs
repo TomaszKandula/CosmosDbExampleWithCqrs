@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace CosmosDbExample.Domain.Entities
+﻿namespace CosmosDbExample.Domain.Entities
 {  
-    public class Articles
+    public class Articles : __EntityKey
     {
-        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Desc { get; set; }
         public string Status { get; set; }
