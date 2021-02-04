@@ -11,7 +11,7 @@ using MediatR;
 
 namespace CosmosDbExample.Controllers
 {
-    public class UsersController : BaseController
+    public class UsersController : __BaseController
     {
         public UsersController(IMediator AMediator) : base(AMediator)
         {        
