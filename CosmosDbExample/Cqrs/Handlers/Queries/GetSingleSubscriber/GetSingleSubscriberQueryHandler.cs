@@ -6,7 +6,6 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleSubscriber
 {
-
     public class GetSingleSubscriberQueryHandler : IRequestHandler<GetSingleSubscriberQuery, Subscribers>
     {
 
@@ -21,7 +20,5 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleSubscriber
         {
             return await FCosmosDbService.GetItem<Subscribers>(ARequest.Id, ACancellationToken);
         }
-
     }
-
 }

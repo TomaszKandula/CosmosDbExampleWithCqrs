@@ -6,10 +6,8 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleUser
 {
-
     public class GetSingleUserQueryHandler : IRequestHandler<GetSingleUserQuery, Users>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetSingleUserQueryHandler(ICosmosDbService ACosmosDbService)
@@ -21,7 +19,5 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleUser
         {
             return await FCosmosDbService.GetItem<Users>(ARequest.Id, ACancellationToken);
         }
-
     }
-
 }

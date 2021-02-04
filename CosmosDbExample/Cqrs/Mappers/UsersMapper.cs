@@ -3,10 +3,8 @@ using CosmosDbExample.Shared.Dto;
 
 namespace CosmosDbExample.Cqrs.Mappers
 {
-
     public static class UsersMapper
     {
-
         public static AddNewUserCommand MapToAddNewUserCommand(AddNewUserDto AModel) 
         {
             return new AddNewUserCommand 
@@ -16,7 +14,5 @@ namespace CosmosDbExample.Cqrs.Mappers
                 Email = AModel.Email
             };
         }
-
     }
-
 }

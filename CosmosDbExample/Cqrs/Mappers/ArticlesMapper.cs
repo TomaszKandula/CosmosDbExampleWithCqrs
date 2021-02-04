@@ -3,10 +3,8 @@ using CosmosDbExample.Shared.Dto;
 
 namespace CosmosDbExample.Cqrs.Mappers
 {
-
     public static class ArticlesMapper
     {
-
         public static AddNewArticleCommand MapToAddNewArticleCommand(AddNewArticleDto AModel) 
         {
             return new AddNewArticleCommand
@@ -19,7 +17,5 @@ namespace CosmosDbExample.Cqrs.Mappers
                 ReadCount = AModel.ReadCount
             };        
         }
-
     }
-
 }

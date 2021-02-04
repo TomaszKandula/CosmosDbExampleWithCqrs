@@ -7,10 +7,8 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllArticles
 {
-
     public class GetAllArticlesQueryHandler : IRequestHandler<GetAllArticlesQuery, IEnumerable<Articles>>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetAllArticlesQueryHandler(ICosmosDbService ACosmosDbService) 
@@ -23,5 +21,4 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllArticles
             return await FCosmosDbService.GetItems<Articles>($"select * from {typeof(Articles).Name}", ACancellationToken);
         }
     }
-
 }

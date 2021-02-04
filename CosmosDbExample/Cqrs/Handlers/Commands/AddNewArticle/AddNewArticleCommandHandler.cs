@@ -7,10 +7,8 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
 {
-
     public class AddNewArticleCommandHandler : IRequestHandler<AddNewArticleCommand, Unit>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public AddNewArticleCommandHandler(ICosmosDbService ACosmosDbService)
@@ -20,7 +18,6 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
 
         public async Task<Unit> Handle(AddNewArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-
             var NewGuid = Guid.NewGuid();
             await FCosmosDbService.AddItem(NewGuid, new Articles
             {
@@ -34,7 +31,5 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
 
             return await Task.FromResult(Unit.Value);
         }
-
     }
-
 }

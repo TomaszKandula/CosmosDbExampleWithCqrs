@@ -3,7 +3,6 @@ using System;
 
 namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
 {
-
     public class AddNewArticleCommand : IRequest<Unit>
     {
         public Guid Id { get; set; }
@@ -13,5 +12,4 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
         public int Likes { get; set; }
         public int ReadCount { get; set; }
     }
-
 }

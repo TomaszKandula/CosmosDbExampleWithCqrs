@@ -7,10 +7,8 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllSubscribers
 {
-
     public class GetAllSubscribersQueryHandler : IRequestHandler<GetAllSubscribersQuery, IEnumerable<Subscribers>>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetAllSubscribersQueryHandler(ICosmosDbService ACosmosDbService) 
@@ -22,7 +20,5 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllSubscribers
         {
             return await FCosmosDbService.GetItems<Subscribers>($"select * from {typeof(Subscribers).Name}", ACancellationToken);
         } 
-
     }
-
 }

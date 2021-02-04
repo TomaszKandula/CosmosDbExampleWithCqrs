@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CosmosDbExample.Shared.Dto
+namespace CosmosDbExample.Domain.Entities
 {
-    public class GetSingleUserDto
+    public class __EntityKey
     {
         public Guid Id { get; set; }
     }

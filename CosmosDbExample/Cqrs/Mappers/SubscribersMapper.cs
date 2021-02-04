@@ -3,10 +3,8 @@ using CosmosDbExample.Shared.Dto;
 
 namespace CosmosDbExample.Cqrs.Mappers
 {
-
     public static class SubscribersMapper
     {
-
         public static AddNewSubscriberCommand MapToAddNewSubscriberCommand(AddNewSubscriberDto AModel) 
         {
             return new AddNewSubscriberCommand 
@@ -15,7 +13,5 @@ namespace CosmosDbExample.Cqrs.Mappers
                 IsActive = AModel.IsActive
             };
         }
-
     }
-
 }
