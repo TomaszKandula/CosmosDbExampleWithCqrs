@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace CosmosDbExample.Domain.Entities
+namespace CosmosDbExample.Domain
 {
-    public class __EntityKey
+    public class EntityKey
     {
         public Guid Id { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace CosmosDbExample.Domain.Entities
 {  
-    public class Articles : __EntityKey
+    public class Articles : EntityKey
     {
         public string Title { get; set; }
         public string Desc { get; set; }
