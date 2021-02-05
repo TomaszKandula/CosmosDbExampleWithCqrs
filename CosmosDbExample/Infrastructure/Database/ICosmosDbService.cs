@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace CosmosDbExample.Database
+namespace CosmosDbExample.Infrastructure.Database
 {
     public interface ICosmosDbService
     {

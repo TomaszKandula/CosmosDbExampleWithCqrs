@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using CosmosDbExample.Database;
-using CosmosDbExample.Domain.Entities;
+using CosmosDbExample.Infrastructure.Database;
+using CosmosDbExample.Infrastructure.Domain.Entities;
 using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllUsers

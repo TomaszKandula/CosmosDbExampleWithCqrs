@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using CosmosDbExample.Shared.Dto;
 using CosmosDbExample.Cqrs.Mappers;
-using CosmosDbExample.Domain.Entities;
+using CosmosDbExample.Infrastructure.Domain.Entities;
 using CosmosDbExample.Cqrs.Handlers.Queries.GetAllUsers;
 using CosmosDbExample.Cqrs.Handlers.Queries.GetSingleUser;
 using MediatR;
