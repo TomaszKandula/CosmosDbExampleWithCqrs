@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Microsoft.Azure.Cosmos;
 using CosmosDbExample.Settings;
 
-namespace CosmosDbExample.Database
+namespace CosmosDbExample.Infrastructure.Database
 {
     public class CosmosDbService : CosmosDbObject, ICosmosDbService
     {

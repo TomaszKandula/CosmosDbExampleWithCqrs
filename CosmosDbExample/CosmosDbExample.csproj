@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\" />
+    <Folder Include="Infrastructure\Database\" />
   </ItemGroup>
 
   <ItemGroup>

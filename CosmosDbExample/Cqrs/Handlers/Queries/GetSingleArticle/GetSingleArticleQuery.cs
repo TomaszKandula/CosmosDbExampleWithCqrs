@@ -1,5 +1,5 @@
 ﻿using System;
-using CosmosDbExample.Domain.Entities;
+using CosmosDbExample.Infrastructure.Domain.Entities;
 using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleArticle

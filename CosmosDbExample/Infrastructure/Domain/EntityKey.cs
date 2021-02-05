@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CosmosDbExample.Domain
+namespace CosmosDbExample.Infrastructure.Domain
 {
     public class EntityKey
     {
