@@ -100,6 +100,6 @@ From Quickstart tab, copy:
 1. URI to Account.
 1. Primary Key to Key.
 
-### Run
+## Run
 
 In Visual Studio, build and run. Navigate to Swagger and have fun!
