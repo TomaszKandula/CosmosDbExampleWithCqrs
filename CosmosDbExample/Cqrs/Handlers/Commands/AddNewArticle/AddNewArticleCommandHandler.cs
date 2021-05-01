@@ -12,14 +12,13 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewArticle
         private readonly ICosmosDbService FCosmosDbService;
 
         public AddNewArticleCommandHandler(ICosmosDbService ACosmosDbService)
-        {
-            FCosmosDbService = ACosmosDbService;
-        }
+            => FCosmosDbService = ACosmosDbService;
 
         public async Task<Unit> Handle(AddNewArticleCommand ARequest, CancellationToken ACancellationToken)
         {
-            var NewGuid = Guid.NewGuid();
-            await FCosmosDbService.AddItem(NewGuid, new Articles
+            var LNewGuid = Guid.NewGuid();
+
+            await FCosmosDbService.AddItem(LNewGuid, new Articles
             {
                 Id = ARequest.Id,
                 Title = ARequest.Title,

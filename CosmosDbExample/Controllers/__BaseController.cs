@@ -10,9 +10,6 @@ namespace CosmosDbExample.Controllers
     {
         protected readonly IMediator FMediator;
 
-        public __BaseController(IMediator AMediator) 
-        {
-            FMediator = AMediator;
-        }
+        public __BaseController(IMediator AMediator) => FMediator = AMediator;
     }
 }

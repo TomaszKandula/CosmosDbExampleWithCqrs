@@ -12,13 +12,11 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllSubscribers
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetAllSubscribersQueryHandler(ICosmosDbService ACosmosDbService) 
-        {
-            FCosmosDbService = ACosmosDbService;
-        }
+            => FCosmosDbService = ACosmosDbService;
 
         public async Task<IEnumerable<Subscribers>> Handle(GetAllSubscribersQuery ARequest, CancellationToken ACancellationToken) 
         {
-            return await FCosmosDbService.GetItems<Subscribers>($"select * from {typeof(Subscribers).Name}", ACancellationToken);
+            return await FCosmosDbService.GetItems<Subscribers>($"select * from {nameof(Subscribers)}", ACancellationToken);
         } 
     }
 }

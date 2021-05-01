@@ -4,7 +4,5 @@ using MediatR;
 
 namespace CosmosDbExample.Cqrs.Handlers.Queries.GetAllSubscribers
 {
-    public class GetAllSubscribersQuery : IRequest<IEnumerable<Subscribers>>
-    {
-    }
+    public class GetAllSubscribersQuery : IRequest<IEnumerable<Subscribers>> { }
 }

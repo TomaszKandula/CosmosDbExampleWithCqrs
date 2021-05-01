@@ -8,13 +8,10 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleSubscriber
 {
     public class GetSingleSubscriberQueryHandler : IRequestHandler<GetSingleSubscriberQuery, Subscribers>
     {
-
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetSingleSubscriberQueryHandler(ICosmosDbService ACosmosDbService)
-        {
-            FCosmosDbService = ACosmosDbService;
-        }
+            => FCosmosDbService = ACosmosDbService;
 
         public async Task<Subscribers> Handle(GetSingleSubscriberQuery ARequest, CancellationToken ACancellationToken)
         {

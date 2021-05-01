@@ -5,16 +5,16 @@ namespace CosmosDbExample
 {
     public class Program
     {
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+        public static IHostBuilder CreateHostBuilder(string[] AArgs) =>
+            Host.CreateDefaultBuilder(AArgs)
+                .ConfigureWebHostDefaults(AWebBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    AWebBuilder.UseStartup<Startup>();
                 });
 
-        public static void Main(string[] args)
+        public static void Main(string[] AArgs)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(AArgs).Build().Run();
         }
     }
 }
