@@ -26,12 +26,10 @@ namespace CosmosDbExample
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration AConfiguration)
-        {
-            Configuration = AConfiguration;
-        }
+            => Configuration = AConfiguration;
 
         public void ConfigureServices(IServiceCollection AServices)
         {
@@ -61,38 +59,28 @@ namespace CosmosDbExample
             AServices.AddTransient<IRequestHandler<GetSingleUserQuery, Users>, GetSingleUserQueryHandler>();
             AServices.AddTransient<IRequestHandler<GetSingleSubscriberQuery, Subscribers>, GetSingleSubscriberQueryHandler>();
 
-            AServices.AddResponseCompression(AOptions =>
-            {
-                AOptions.Providers.Add<GzipCompressionProvider>();
-            });
+            AServices.AddResponseCompression(AOptions 
+                => AOptions.Providers.Add<GzipCompressionProvider>());
 
-            AServices.AddSwaggerGen(AOption =>
-            {
-                AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "Cosmos DB Example", Version = "v1" });
-            });
+            AServices.AddSwaggerGen(AOption 
+                => AOption.SwaggerDoc("v1", new OpenApiInfo { Title = "Cosmos DB Example", Version = "v1" }));
         }
 
         public void Configure(IApplicationBuilder AApplication, IWebHostEnvironment AEnvironment)
         {
             if (AEnvironment.IsDevelopment())
-            {
                 AApplication.UseDeveloperExceptionPage();
-            }
 
             AApplication.UseSwagger();
-            AApplication.UseSwaggerUI(AOption =>
-            {
-                AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "Cosmos DB Example version 1");
-            });
+            AApplication.UseSwaggerUI(AOption 
+                => AOption.SwaggerEndpoint("/swagger/v1/swagger.json", "Cosmos DB Example version 1"));
 
             AApplication.UseResponseCompression();
             AApplication.UseStaticFiles();
             AApplication.UseRouting();
 
-            AApplication.UseEndpoints(AEndpoints =>
-            {
-                AEndpoints.MapControllers();
-            });
+            AApplication.UseEndpoints(AEndpoints 
+                => AEndpoints.MapControllers());
         }
     }
 }

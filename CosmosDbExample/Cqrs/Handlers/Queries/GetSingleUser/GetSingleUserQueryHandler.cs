@@ -11,9 +11,7 @@ namespace CosmosDbExample.Cqrs.Handlers.Queries.GetSingleUser
         private readonly ICosmosDbService FCosmosDbService;
 
         public GetSingleUserQueryHandler(ICosmosDbService ACosmosDbService)
-        {
-            FCosmosDbService = ACosmosDbService;
-        }
+            => FCosmosDbService = ACosmosDbService;
 
         public async Task<Users> Handle(GetSingleUserQuery ARequest, CancellationToken ACancellationToken)
         {

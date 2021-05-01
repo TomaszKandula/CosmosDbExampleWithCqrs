@@ -12,16 +12,15 @@ namespace CosmosDbExample.Cqrs.Handlers.Commands.AddNewSubscriber
         private readonly ICosmosDbService FCosmosDbService;
 
         public AddNewSubscriberCommandHandler(ICosmosDbService ACosmosDbService)
-        {
-            FCosmosDbService = ACosmosDbService;
-        }
+            => FCosmosDbService = ACosmosDbService;
 
         public async Task<Unit> Handle(AddNewSubscriberCommand ARequest, CancellationToken ACancellationToken)
         {
-            var NewGuid = Guid.NewGuid();
-            await FCosmosDbService.AddItem(NewGuid, new Subscribers
+            var LNewGuid = Guid.NewGuid();
+            
+            await FCosmosDbService.AddItem(LNewGuid, new Subscribers
             {
-                Id = NewGuid,
+                Id = LNewGuid,
                 Email = ARequest.Email
             }, ACancellationToken);
 
