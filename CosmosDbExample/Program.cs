@@ -5,7 +5,7 @@ namespace CosmosDbExample
 {
     public class Program
     {
-        public static IHostBuilder CreateHostBuilder(string[] AArgs) =>
+        private static IHostBuilder CreateHostBuilder(string[] AArgs) =>
             Host.CreateDefaultBuilder(AArgs)
                 .ConfigureWebHostDefaults(AWebBuilder =>
                 {
