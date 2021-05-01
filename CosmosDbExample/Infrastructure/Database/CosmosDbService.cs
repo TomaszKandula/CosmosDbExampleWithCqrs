@@ -11,42 +11,45 @@ namespace CosmosDbExample.Infrastructure.Database
 {
     public class CosmosDbService : CosmosDbObject, ICosmosDbService
     {
-        private Container FContainer { get; set; }
-        private CosmosClient FCosmosClient { get; set; }
-        private string FDatabaseName { get; set; }
-        private int FDefaultThroughput { get; set; }
+        private Container Container { get; set; }
+        
+        private CosmosClient CosmosClient { get; set; }
+        
+        private string DatabaseName { get; set; }
+        
+        private int DefaultThroughput { get; set; }
 
         public CosmosDbService(CosmosDbSettings AConfiguration)
         {
-            var LAccount  = AConfiguration.Account;
-            var LKey      = AConfiguration.Key;
+            var LAccount = AConfiguration.Account;
+            var LKey = AConfiguration.Key;
 
-            FDatabaseName  = AConfiguration.DatabaseName;
+            DatabaseName = AConfiguration.DatabaseName;
 
-            FCosmosClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions()
+            CosmosClient = new CosmosClient(LAccount, LKey, new CosmosClientOptions
             {
-                SerializerOptions = new CosmosSerializationOptions()
+                SerializerOptions = new CosmosSerializationOptions
                 {
                     PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
                 }
             });
 
-            FContainer = null;
-            FDefaultThroughput = 400;
+            Container = null;
+            DefaultThroughput = 400;
         }
 
         private void InitContainer<T>() 
         {
             // Names of CosmosDb container and item model used in the container must be the same
             var LModelName = typeof(T).Name;
-            FContainer = FCosmosClient.GetContainer(FDatabaseName, LModelName);
+            Container = CosmosClient.GetContainer(DatabaseName, LModelName);
         }
 
         public override async Task<HttpStatusCode> CreateDatabase(string ADatabaseName, CancellationToken ACancellationToken = default) 
         {
             try
             {
-                var LDbResponse = await FCosmosClient.CreateDatabaseIfNotExistsAsync(ADatabaseName, FDefaultThroughput, null, ACancellationToken);
+                var LDbResponse = await CosmosClient.CreateDatabaseIfNotExistsAsync(ADatabaseName, DefaultThroughput, null, ACancellationToken);
                 return LDbResponse.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
@@ -59,8 +62,8 @@ namespace CosmosDbExample.Infrastructure.Database
         {
             try
             {
-                var LDatabase = FCosmosClient.GetDatabase(ADatabaseName);
-                var LContainerResponse = await LDatabase.CreateContainerIfNotExistsAsync(AId.ToString(), AContainerName, FDefaultThroughput, null, ACancellationToken);
+                var LDatabase = CosmosClient.GetDatabase(ADatabaseName);
+                var LContainerResponse = await LDatabase.CreateContainerIfNotExistsAsync(AId.ToString(), AContainerName, DefaultThroughput, null, ACancellationToken);
                 return LContainerResponse.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
@@ -69,11 +72,11 @@ namespace CosmosDbExample.Infrastructure.Database
             }
         }
 
-        public override async Task<HttpStatusCode> IsItemExists<T>(Guid Id, CancellationToken ACancellationToken = default) where T : class
+        public override async Task<HttpStatusCode> IsItemExists<T>(Guid AId, CancellationToken ACancellationToken = default) where T : class
         {
             var LModelName = typeof(T).Name;
-            var LModelSymbol = LModelName[0..1].ToLower();
-            var LQuery = $"select * from {LModelName} {LModelSymbol} where {LModelSymbol}.id = \"{Id}\"";
+            var LModelSymbol = LModelName[..1].ToLower();
+            var LQuery = $"select * from {LModelName} {LModelSymbol} where {LModelSymbol}.id = \"{AId}\"";
             var LItems = await GetItems<T>(LQuery, ACancellationToken);
 
             if (!LItems.Any())
@@ -88,8 +91,8 @@ namespace CosmosDbExample.Infrastructure.Database
         {
             try
             {
-                if (FContainer == null) InitContainer<T>();
-                var LResponse = await FContainer.ReadItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()), null, ACancellationToken);
+                if (Container == null) InitContainer<T>();
+                var LResponse = await Container.ReadItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()), null, ACancellationToken);
                 return LResponse.Resource;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
@@ -102,8 +105,8 @@ namespace CosmosDbExample.Infrastructure.Database
         {
             try 
             {
-                if (FContainer == null) InitContainer<T>();
-                var LQuery = FContainer.GetItemQueryIterator<T>(new QueryDefinition(AQueryString));
+                if (Container == null) InitContainer<T>();
+                var LQuery = Container.GetItemQueryIterator<T>(new QueryDefinition(AQueryString));
                 var LResults = new List<T>();
 
                 while (LQuery.HasMoreResults)
@@ -124,9 +127,9 @@ namespace CosmosDbExample.Infrastructure.Database
         {
             try 
             {
-                if (FContainer == null) InitContainer<T>();
-                var Response = await FContainer.CreateItemAsync<T>(AItem, new PartitionKey(AId.ToString()), null, ACancellationToken);
-                return Response.StatusCode;
+                if (Container == null) InitContainer<T>();
+                var LResponse = await Container.CreateItemAsync(AItem, new PartitionKey(AId.ToString()), null, ACancellationToken);
+                return LResponse.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.Created)
             {
@@ -138,9 +141,9 @@ namespace CosmosDbExample.Infrastructure.Database
         {
             try
             {
-                if (FContainer == null) InitContainer<T>();
-                var Response = await FContainer.UpsertItemAsync<T>(AItem, new PartitionKey(AId.ToString()), null, ACancellationToken);
-                return Response.StatusCode;
+                if (Container == null) InitContainer<T>();
+                var LResponse = await Container.UpsertItemAsync(AItem, new PartitionKey(AId.ToString()), null, ACancellationToken);
+                return LResponse.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.OK)
             {
@@ -152,9 +155,9 @@ namespace CosmosDbExample.Infrastructure.Database
         {
             try
             {
-                if (FContainer == null) InitContainer<T>();
-                var Response = await FContainer.DeleteItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()), null, ACancellationToken);
-                return Response.StatusCode;
+                if (Container == null) InitContainer<T>();
+                var LResponse = await Container.DeleteItemAsync<T>(AId.ToString(), new PartitionKey(AId.ToString()), null, ACancellationToken);
+                return LResponse.StatusCode;
             }
             catch (CosmosException LException) when (LException.StatusCode != HttpStatusCode.NoContent)
             {
